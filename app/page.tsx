@@ -1,7 +1,5 @@
-import Image from 'next/image'
-
 export default function Home() {
   return (
-    <p className='text-3xl'>Netflix Clone</p>
+    <p className='text-3xl text-red-300'>Netflix Clone</p>
   )
 }
