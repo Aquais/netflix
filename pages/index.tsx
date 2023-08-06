@@ -1,3 +1,5 @@
+import Billboard from "@/components/Billboard";
+import Navbar from "@/components/Navbar";
 import useCurrentUser from "@/hooks/useCurrentUser";
 import { NextPageContext } from "next";
 import { getSession, signOut } from "next-auth/react";
@@ -25,11 +27,8 @@ export default function Home() {
 
   return (
     <>
-      <p className="text-3xl text-red-300">Netflix Clone</p>
-      <p className="text-3xl text-white">Bienvenue {user?.email}</p>
-      <button className="h-10 w-full bg-white" onClick={() => signOut()}>
-        Se déconnecter
-      </button>
+      <Navbar/>
+      <Billboard/>
     </>
   );
 }
