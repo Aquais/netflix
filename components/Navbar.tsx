@@ -13,11 +13,7 @@ const Navbar = () => {
 
   useEffect(() => {
     const handleScroll = () => {
-      if (window.scrollY > TOP_OFFSET) {
-        setShowbackground(true);
-      } else {
-        setShowbackground(false);
-      }
+      setShowbackground(window.scrollY > TOP_OFFSET);
     };
 
     window.addEventListener("scroll", handleScroll);
