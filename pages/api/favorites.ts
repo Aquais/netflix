@@ -1,4 +1,5 @@
 import { NextApiRequest, NextApiResponse } from "next";
+import prismadb from "@/lib/prismadb";
 import serverAuth from "@/lib/serverAuth";
 
 export default async function handler(
@@ -6,13 +7,21 @@ export default async function handler(
   res: NextApiResponse
 ) {
   if (req.method !== "GET") {
-    res.status(405).json({ message: "Method not allowed" });
+    res.status(405).end();
     return;
   }
 
   try {
     const { currentUser } = await serverAuth(req, res);
-    res.status(200).json(currentUser);
+    const favoriteMovies = await prismadb.movie.findMany({
+      where: {
+        id: {
+          in: currentUser.favoriteIds,
+        },
+      },
+    });
+
+    res.status(200).json(favoriteMovies);
   } catch (err: any) {
     res.status(500).json({ message: err.message });
   }
