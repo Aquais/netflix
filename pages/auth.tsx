@@ -1,5 +1,5 @@
 import Image from "next/image";
-import Input from "@/components/input";
+import Input from "@/components/Input";
 import axios from "axios";
 import { useCallback, useState } from "react";
 import { signIn } from "next-auth/react";
