@@ -35,9 +35,11 @@ export default function Home() {
       <InfoModal visible={isOpen} onClose={closeModal} />
       <Navbar />
       <Billboard />
-      <div className="pb-40">
-        <MovieList data={movies} title="Tendances actuelles" />
-        <MovieList data={favorites} title="Ma liste" />
+      <div className="pb-40 top-[60vh] absolute w-full">
+        <div className="flex flex-col m-auto p-auto">
+          <MovieList data={movies} title="Tendances actuelles" />
+          <MovieList data={favorites} title="Ma liste" />
+        </div>
       </div>
     </>
   );

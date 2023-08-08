@@ -23,6 +23,7 @@ export async function getServerSideProps(context: NextPageContext) {
 
 const Profiles = () => {
   const router = useRouter();
+  const { data: profile } = useCurrentUser();
   const { data: user } = useCurrentUser();
 
   return (
@@ -43,7 +44,7 @@ const Profiles = () => {
                 />
               </div>
               <div className="mt-4 text-gray-400 text-2xl text-center group-hover:text-white">
-                Name
+                {profile?.name}
               </div>
             </div>
           </div>

@@ -4,6 +4,7 @@ import PlayButton from "./PlayButton";
 import FavoriteButton from "./FavoriteButton";
 import useInfoModal from "@/hooks/useInfoModal";
 import useMovie from "@/hooks/useMovie";
+import { HiSpeakerWave, HiSpeakerXMark } from "react-icons/hi2";
 
 interface InfoModalProps {
   visible?: boolean;
@@ -14,6 +15,18 @@ const InfoModal: React.FC<InfoModalProps> = ({ visible, onClose }) => {
   const [isVisible, setIsVisible] = useState(visible);
   const { movieId } = useInfoModal();
   const { data = {} } = useMovie(movieId);
+
+  const [muted, setMuted] = useState(true);
+  const Icon = muted ? HiSpeakerXMark : HiSpeakerWave;
+  const videoSource = data
+  ? data.trailerUrl === ""
+    ? data.videoUrl
+    : data.trailerUrl
+  : "";
+
+  const toggleMuted = useCallback(() => {
+    setMuted((prev) => !prev);
+  }, []);
 
   useEffect(() => {
     setIsVisible(visible);
@@ -39,10 +52,10 @@ const InfoModal: React.FC<InfoModalProps> = ({ visible, onClose }) => {
           <div className="relative h-96">
             <video
               className="w-full brightness-[60%] object-cover h-full"
-              src={data?.videoUrl}
+              src={videoSource}
               poster={data?.thumbnailUrl}
               autoPlay
-              muted
+              muted={muted}
               loop
             ></video>
             <div
@@ -58,8 +71,14 @@ const InfoModal: React.FC<InfoModalProps> = ({ visible, onClose }) => {
               <div className="flex flex-row gap-4 items-center">
                 <PlayButton movieId={data?.id} />
                 <FavoriteButton movieId={data?.id} />
+                <div
+                  onClick={toggleMuted}
+                  className="cursor-pointer group/item w-6 h-6 lg:w-10 lg:h-10 border-white border-2 rounded-full flex justify-center items-center transition hover:border-neutral-300"
+                >
+                  <Icon size={25} className="text-white" />
+                </div>
               </div>
-            </div>   
+            </div>
           </div>
           <div className="px-12 py-8">
             <p className="text-green-400 font-semibold text-lg">Nouveauté</p>
