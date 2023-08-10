@@ -25,20 +25,24 @@ const Billboard = () => {
   }, [data?.id, openModal]);
 
   return (
-    <div className="relative h-[80h]">
+    <div className="relative h-[85h] ">
       <video
-        className="w-full h-[80vh] object-cover brightness-[60%]"
+        className="w-full h-[85vh] object-cover brightness-[60%]"
         autoPlay
         muted={muted}
         poster={data?.thumbnailUrl}
         src={videoSource}
       ></video>
-      <div className="absolute top-[10%] md:top-[20%] ml-4 md:ml-16">
-        <p className="text-white text-1xl md:text-5xl h-full w-[50%] lg:text-6xl font-bold drop-shadow-xl">
+      <div className="absolute top-[40%] ml-4 md:ml-16 w-full ">
+        <p className="text-white text-1xl md:text-5xl h-full w-auto lg:text-6xl font-bold drop-shadow-xl">
           {data?.title}
-        </p>
-        <p className="text-white text-[8px] md:text-lg mt-3 md:mt-8 w-[90%] md:w-[80%] lg:w-[50%] drop-shadow-xl">
-          {data?.description}
+        </p>{" "}
+        <p className="text-white text-md h-full w-[80%] font-bold drop-shadow-xl">
+          {data?.description.length > 200 ? ( // if description is too long, cut it
+            data?.description.slice(0, 200) + "..."
+          ) : (
+            <>{data?.description}</>
+          )}
         </p>
         <div className="flex flew-row items-end justify-between">
           <div className="flex flex-row items-center mt-3 md:mt-4 gap-3">
@@ -53,7 +57,7 @@ const Billboard = () => {
           <div className="button mr-8">
             <div
               onClick={toggleMuted}
-              className="cursor-pointer group/item w-6 h-6 lg:w-10 lg:h-10 border-white border-2 rounded-full flex justify-center items-center transition hover:border-neutral-300"
+              className="cursor-pointer mr-28 group/item w-6 h-6 lg:w-10 lg:h-10 border-white border-2 rounded-full flex justify-center items-center transition hover:border-neutral-300"
             >
               <Icon size={25} className="text-white" />
             </div>

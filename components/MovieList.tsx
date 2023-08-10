@@ -14,10 +14,10 @@ const MovieList: React.FC<MovieListProps> = ({ data, title }) => {
 
   return (
     <>
-      <h1 className="flex mx-16 font-bold text-md text-white">
+      <h1 className="flex mx-16 font-bold text-md text-white mt-4">
         {title}
       </h1>
-      <div className="flex overflow-x-scroll no-scrollbar">
+      <div className="flex overflow-x-scroll no-scrollbar py-40 -my-40">
         <div className="flex flex-nowrap mx-14">
           {data.map((movie: Record<string, any>) => (
             <MovieCard key={movie.id} data={movie} />

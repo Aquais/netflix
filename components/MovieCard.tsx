@@ -14,7 +14,7 @@ const MovieCard: React.FC<MovieCardProps> = ({ data }) => {
   const { openModal } = useInfoModal();
   return (
     <div className="inline-block px-0.5">
-      <div className="w-56 h-auto max-w-xs rounded-lg shadow-md hover:shadow-xl transition-shadow duration-300 ease-in-out">
+      <div className="w-64 h-auto max-w-xs rounded-lg shadow-md hover:shadow-xl transition-shadow duration-300 ease-in-out">
         <div className="group bg-zinc-900 col-span relative h-[12vw]">
           <img
             src={data.thumbnailUrl}
